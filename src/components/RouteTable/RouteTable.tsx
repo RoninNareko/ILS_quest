@@ -1,43 +1,19 @@
-import React from "react";
 import "./RouteTable.scss";
-
-const routesData = [
-  {
-    routeNumber: "Маршрут №1",
-    points: [
-      { latitude: 59.84660399, longitude: 30.29496392 },
-      { latitude: 59.82934196, longitude: 30.42423701 },
-      { latitude: 59.83567701, longitude: 30.38064206 },
-    ],
-  },
-  {
-    routeNumber: "Маршрут №2",
-    points: [
-      { latitude: 59.82934196, longitude: 30.42423701 },
-      { latitude: 59.82761295, longitude: 30.41705607 },
-      { latitude: 59.84660399, longitude: 30.29496392 },
-    ],
-  },
-  {
-    routeNumber: "Маршрут №3",
-    points: [
-      { latitude: 59.83567701, longitude: 30.38064206 },
-      { latitude: 59.84660399, longitude: 30.29496392 },
-      { latitude: 59.82761295, longitude: 30.41705607 },
-    ],
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const RouteTable = () => {
+  const routesData = useSelector((state: RootState) => state.map.routesData);
+
   return (
     <div className="table-container">
       <table className="table">
         <thead>
           <tr>
             <th>Маршрут</th>
-            <th>Точка маршрута №1</th>
-            <th>Точка маршрута №2</th>
-            <th>Точка маршрута №3</th>
+            {routesData.map(({ routeNumber }, index) => (
+              <th key={index}>{routeNumber}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
