@@ -1,12 +1,13 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
-import { MapStateType, Route } from "./mapReducer-types";
+import { PayloadAction, createAction, createReducer } from "@reduxjs/toolkit";
+import { MapStateType } from "./mapReducer-types";
 
-// export const GET_CATEGORIES = createAction<any[]>("GET_CATEGORIES");
+export const SELECT_ROUTE = createAction<number>("SELECT_ROUTE");
+
 export const initialState:MapStateType = {
-    // @ts-ignore
+    selectedRoute:{},
     routesData:[
         {
-          routeNumber: "Маршрут №1",
+          routeNumber: 1,
           points: [
             { latitude: 59.84660399, longitude: 30.29496392 },
             { latitude: 59.82934196, longitude: 30.42423701 },
@@ -14,7 +15,7 @@ export const initialState:MapStateType = {
           ],
         },
         {
-          routeNumber: "Маршрут №2",
+          routeNumber: 2,
           points: [
             { latitude: 59.82934196, longitude: 30.42423701 },
             { latitude: 59.82761295, longitude: 30.41705607 },
@@ -22,7 +23,7 @@ export const initialState:MapStateType = {
           ],
         },
         {
-          routeNumber: "Маршрут №3",
+          routeNumber: 3,
           points: [
             { latitude: 59.83567701, longitude: 30.38064206 },
             { latitude: 59.84660399, longitude: 30.29496392 },
@@ -32,7 +33,21 @@ export const initialState:MapStateType = {
       ]
 };
 
-export const mapReducer = function (state = initialState) {
-    return state    
-};
+export const mapReducer = createReducer(initialState, {
+  [SELECT_ROUTE.type]: (
+    state: MapStateType,
+    action: PayloadAction<number>
+  ) => {
+    const selectRouteNumber = action.payload;
+    const selectedRoute = initialState.routesData.find((el) => el.routeNumber === selectRouteNumber) || {};    
+    console.log("selectedRoute", selectedRoute);
+
+    const updatedState: MapStateType = {
+      ...initialState,
+      selectedRoute,
+    };
+    return updatedState;
+  },
+});
+
 export default mapReducer;

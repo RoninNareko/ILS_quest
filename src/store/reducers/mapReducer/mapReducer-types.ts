@@ -4,10 +4,11 @@ export type Point = {
   };
   
   export type Route = {
-    routeNumber: string;
+    routeNumber: number;
     points: Point[];
   };
   
   export interface MapStateType {
+    selectedRoute:Route|{},
     routesData:Route[]
   }
