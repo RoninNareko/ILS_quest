@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { SELECT_ROUTE } from "../../store/reducers/mapReducer/mapReducer";
 import { routesDataSelector } from "../../store/selectors/routesDataSelector";
 import { selectedRoutesDataSelector } from "../../store/selectors/selectedRoutesDataSelector";
-import styles from "./RouteTable.module.scss";
 import classNames from "classnames";
 import { active_color, passive_color } from "./RouteTable-constants";
+
+import styles from "./RouteTable.module.scss";
 
 const RouteTable = () => {
   const cx = classNames.bind(styles);
@@ -25,7 +26,7 @@ const RouteTable = () => {
           <tr>
             <th>Маршрут</th>
             {routesData.map(({ routeNumber }, index) => (
-              <th key={index}>Маршрут № {routeNumber}</th>
+              <th key={index}>Точка {routeNumber} (lat, Ing)</th>
             ))}
           </tr>
         </thead>

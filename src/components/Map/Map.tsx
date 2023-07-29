@@ -7,9 +7,9 @@ import { currentRouteTrackSelector } from "../../store/selectors/currentRouteTra
 import { selectedRoutesDataSelector } from "../../store/selectors/selectedRoutesDataSelector";
 import { ROUTE_TRACK_REQUEST } from "../../store/reducers/mapReducer/mapReducer";
 
-import "leaflet/dist/leaflet.css";
 import styles from "./Map.module.scss";
 import { TileLayer_attribution, TileLayer_url } from "./Map-constants";
+import "leaflet/dist/leaflet.css";
 
 function Map() {
   const cx = classNames.bind(styles);

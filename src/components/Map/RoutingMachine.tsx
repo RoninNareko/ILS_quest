@@ -7,6 +7,7 @@ import { iconUrl } from "./Map-constants";
 L.Marker.prototype.options.icon = L.icon({
   iconUrl,
 });
+
 // @ts-ignore
 const createRoutineMachineLayer = (props) => {
   const { currentRouteTrack } = props;

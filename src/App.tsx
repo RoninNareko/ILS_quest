@@ -1,6 +1,7 @@
-import "./App.css";
 import Map from "./components/Map/Map";
 import RouteTable from "./components/RouteTable/RouteTable";
+
+import "./App.css";
 
 function App() {
   return (

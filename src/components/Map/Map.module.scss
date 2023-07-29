@@ -1,6 +1,6 @@
 .leaflet_container {
-  height: 49vw;
-  width: 90vw;
+  height: 68vh;
+  width: 100%;
 }
 
 .map_container {
@@ -9,8 +9,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.leaflet-right {
-  display: none !important;
 }
