@@ -1,5 +1,5 @@
 /* RouteTable.css */
-.table-container {
+.table_container {
   width: 100%;
   margin-top: 20px;
 }
@@ -32,4 +32,7 @@
 
 .table td ul li:last-child {
   margin-bottom: 0;
+}
+.pointer {
+  cursor: pointer;
 }

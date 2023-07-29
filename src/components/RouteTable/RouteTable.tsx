@@ -1,17 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { SELECT_ROUTE } from "../../store/reducers/mapReducer/mapReducer";
 import { routesDataSelector } from "../../store/selectors/routesDataSelector";
-import "./RouteTable.scss";
+import { selectedRoutesDataSelector } from "../../store/selectors/selectedRoutesDataSelector";
+import styles from "./RouteTable.module.scss";
+import classNames from "classnames";
+import { active_color, passive_color } from "./RouteTable-constants";
 
 const RouteTable = () => {
+  const cx = classNames.bind(styles);
+
   const dispatch = useDispatch();
+
   const routesData = useSelector(routesDataSelector);
+  const selectedRoutesData = useSelector(selectedRoutesDataSelector);
+
   const selectRouteOnClickHandler = (routeNumber: number) => {
     dispatch(SELECT_ROUTE(routeNumber));
   };
+
   return (
-    <div className="table-container">
-      <table className="table">
+    <div className={cx(styles.table_container)}>
+      <table className={cx(styles.table)}>
         <thead>
           <tr>
             <th>Маршрут</th>
@@ -23,7 +32,18 @@ const RouteTable = () => {
         <tbody>
           {routesData.map((route, index) => (
             <tr key={index}>
-              <td onClick={() => selectRouteOnClickHandler(route.routeNumber)}>
+              <td
+                onClick={() => selectRouteOnClickHandler(route.routeNumber)}
+                className={cx(styles.pointer)}
+                style={{
+                  backgroundColor:
+                    selectedRoutesData &&
+                    // @ts-ignore
+                    selectedRoutesData.routeNumber === route.routeNumber
+                      ? active_color
+                      : passive_color,
+                }}
+              >
                 Маршрут № {route.routeNumber}
               </td>
               {route.points.map((point, index) => (

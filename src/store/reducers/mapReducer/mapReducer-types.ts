@@ -3,13 +3,13 @@ export type Point = {
     longitude: number;
   };
   
-  export type Route = {
+export type Route = {
     routeNumber: number;
     points: Point[];
   };
 
-  export type Coordinate = [number, number];
-  export interface MapStateType {
+export type Coordinate = [number, number];
+export interface MapStateType {
     selectedRoutesData:Route|{},
     currentRouteTrackData:Coordinate | [],
     routesData:Route[]

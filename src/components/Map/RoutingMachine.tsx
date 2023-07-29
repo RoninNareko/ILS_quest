@@ -1,16 +1,17 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
+import { Coordinate } from "../../store/reducers/mapReducer/mapReducer-types";
 import "leaflet-routing-machine";
+import { iconUrl } from "./Map-constants";
 
 L.Marker.prototype.options.icon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+  iconUrl,
 });
-
-const createRoutineMachineLayer = (props: any) => {
+// @ts-ignore
+const createRoutineMachineLayer = (props) => {
   const { currentRouteTrack } = props;
-  console.log("createRoutineMachineLayer", props);
 
-  const waypoints = currentRouteTrack.map((coordinates: number[]) =>
+  const waypoints = currentRouteTrack.map((coordinates: Coordinate) =>
     L.latLng(coordinates[0], coordinates[1])
   );
 
