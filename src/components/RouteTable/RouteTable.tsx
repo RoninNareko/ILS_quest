@@ -1,14 +1,12 @@
-import "./RouteTable.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 import { SELECT_ROUTE } from "../../store/reducers/mapReducer/mapReducer";
+import { routesDataSelector } from "../../store/selectors/routesDataSelector";
+import "./RouteTable.scss";
 
 const RouteTable = () => {
   const dispatch = useDispatch();
-  const routesData = useSelector((state: RootState) => state.map.routesData);
+  const routesData = useSelector(routesDataSelector);
   const selectRouteOnClickHandler = (routeNumber: number) => {
-    console.log("hahahha", routeNumber);
-
     dispatch(SELECT_ROUTE(routeNumber));
   };
   return (

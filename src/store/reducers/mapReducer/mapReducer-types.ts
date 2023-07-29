@@ -7,8 +7,10 @@ export type Point = {
     routeNumber: number;
     points: Point[];
   };
-  
+
+  export type Coordinate = [number, number];
   export interface MapStateType {
-    selectedRoute:Route|{},
+    selectedRoutesData:Route|{},
+    currentRouteTrackData:Coordinate | [],
     routesData:Route[]
   }

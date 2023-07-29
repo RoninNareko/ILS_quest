@@ -1,10 +1,14 @@
 import { PayloadAction, createAction, createReducer } from "@reduxjs/toolkit";
-import { MapStateType } from "./mapReducer-types";
+import { Coordinate, MapStateType, Route } from "./mapReducer-types";
 
-export const SELECT_ROUTE = createAction<number>("SELECT_ROUTE");
+export const SELECT_ROUTE = createAction<number>("SELECT_ROUTES_DATA");
+export const SET_ROUTE_TRACK = createAction<Coordinate>("SET_ROUTE_TRACK");
+export const ROUTE_TRACK_REQUEST = createAction<Route | {}>("ROUTE_TRACK_REQUEST");
+export const ROUTE_TRACK_REQUEST_ERROR = createAction<string>("ROUTE_TRACK_REQUEST_ERROR");
 
 export const initialState:MapStateType = {
-    selectedRoute:{},
+    currentRouteTrackData:[],
+    selectedRoutesData:{},
     routesData:[
         {
           routeNumber: 1,
@@ -39,13 +43,28 @@ export const mapReducer = createReducer(initialState, {
     action: PayloadAction<number>
   ) => {
     const selectRouteNumber = action.payload;
-    const selectedRoute = initialState.routesData.find((el) => el.routeNumber === selectRouteNumber) || {};    
-    console.log("selectedRoute", selectedRoute);
+    const selectedRoutesData = initialState.routesData.find((el) => el.routeNumber === selectRouteNumber) || {};    
 
     const updatedState: MapStateType = {
-      ...initialState,
-      selectedRoute,
+      ...state,
+      selectedRoutesData,
     };
+    return updatedState;
+  },
+  [SET_ROUTE_TRACK.type]: (
+    state: MapStateType,
+    action: PayloadAction<Coordinate>
+  ) => {
+    
+    const currentRouteTrackData = action.payload;
+  
+    
+    const updatedState: MapStateType = {
+      ...state,
+      currentRouteTrackData,
+    };
+    // console.log("currentRouteTrackData", currentRouteTrackData);
+    
     return updatedState;
   },
 });
